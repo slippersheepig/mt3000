@@ -16,8 +16,5 @@
 # Add a feed source
 #echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
-rm -rf feeds/luci/applications/luci-app-passwall/
-rm -rf feeds/packages/net/xray-core/
-rm -rf feeds/packages/net/xray-plugin/
 git clone https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
 git clone https://github.com/xiaorouji/openwrt-passwall-packages package/luci-app-passwall-packages
