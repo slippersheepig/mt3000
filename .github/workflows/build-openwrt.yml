@@ -20,8 +20,8 @@ on:
         default: 'false'
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
-  REPO_BRANCH: master
+  REPO_URL: https://github.com/hanwckf/immortalwrt-mt798x
+  REPO_BRANCH: openwrt-21.02
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
   DIY_P1_SH: diy-part1.sh
@@ -60,12 +60,6 @@ jobs:
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
-        cd openwrt
-        git reset --hard e14b03b6c2e2f0d13ef1efff23f9374dba281c10
-        useVersionInfo=$(git show -s --date=short --format="提交人: %an<br/>提交时间: %cd<br/>提交内容: %s<br/>commit hash: %H")
-        echo "useVersionInfo=$useVersionInfo" >> $GITHUB_ENV
-        echo "DATE=$(date "+%Y-%m-%d %H:%M:%S")" >> $GITHUB_ENV
-        echo "DATE1=$(date "+%Y-%m-%d")" >> $GITHUB_ENV
 
     - name: Load custom feeds
       run: |
@@ -76,6 +70,9 @@ jobs:
 
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
+
+    - name: Golang mod
+      run: cd openwrt && git clone -b master --single-branch https://github.com/immortalwrt/packages.git packages_master && rm -rf ./feeds/packages/lang/golang && mv ./packages_master/lang/golang ./feeds/packages/lang && rm -rf ./packages_master
 
     - name: Install feeds
       run: cd openwrt && ./scripts/feeds install -a
