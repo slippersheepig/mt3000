@@ -19,5 +19,5 @@
 rm -rf feeds/luci/applications/luci-app-passwall2/
 rm -rf feeds/packages/net/xray-core/
 rm -rf feeds/packages/net/xray-plugin/
-git clone https://github.com/xiaorouji/openwrt-passwall2 package/luci-app-passwall2
+git clone https://github.com/slippersheepig/openwrt-passwall2 package/luci-app-passwall2
 git clone https://github.com/xiaorouji/openwrt-passwall-packages package/luci-app-passwall-packages
