@@ -82,7 +82,7 @@ jobs:
       uses: actions/upload-artifact@main
       with:
         name: OpenWrt-${{ env.DEVICE_NAME }}-Config
-        path: /tmp/upload
+        path: openwrt/.config
 
     - name: 移除旧的 Artifacts
       uses: c-hive/gha-remove-artifacts@v1.2.0
